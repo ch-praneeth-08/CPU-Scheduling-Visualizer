@@ -1,0 +1,332 @@
+/* ErrorBoundary.css */
+
+/* Main Container */
+.error-boundary-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+/* Error Card */
+.error-boundary-card {
+  max-width: 700px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 3rem;
+  text-align: center;
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error Icon */
+.error-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  color: white;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Error Title */
+.error-title {
+  color: #1e293b;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  background: none;
+  -webkit-text-fill-color: initial;
+  padding-bottom: 0;
+}
+
+.error-title::after {
+  display: none;
+}
+
+/* Error Message */
+.error-message {
+  color: #475569;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Action Buttons Container */
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Error Buttons */
+.error-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.error-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.error-btn:active {
+  transform: translateY(0);
+}
+
+/* Primary Button */
+.error-btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.error-btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* Secondary Button */
+.error-btn-secondary {
+  background: #f1f5f9;
+  color: #475569;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.error-btn-secondary:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+/* Error Details (Collapsible Section) */
+.error-details {
+  margin-top: 2rem;
+  text-align: left;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.5rem;
+}
+
+.error-details-summary {
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #475569;
+  user-select: none;
+  transition: all 0.2s ease;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.error-details-summary::-webkit-details-marker {
+  display: none;
+}
+
+.error-details-summary::after {
+  content: '▼';
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.error-details[open] .error-details-summary::after {
+  transform: rotate(180deg);
+}
+
+.error-details-summary:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.error-details-content {
+  padding: 1.5rem 1rem 0.5rem;
+  background: #f8fafc;
+  border-radius: 0 0 8px 8px;
+  margin-top: -8px;
+}
+
+/* Error Detail Sections */
+.error-detail-section {
+  margin-bottom: 1.5rem;
+}
+
+.error-detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.error-detail-section h3 {
+  color: #1e293b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Error Code Block */
+.error-code {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 6px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+  border: 1px solid #334155;
+}
+
+/* Error Count Badge */
+.error-count-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+/* Help Text */
+.error-help {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.error-help p {
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .error-boundary-container {
+    padding: 1rem;
+  }
+
+  .error-boundary-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .error-title {
+    font-size: 1.5rem;
+  }
+
+  .error-message {
+    font-size: 1rem;
+  }
+
+  .error-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .error-icon svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .error-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .error-btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+  }
+
+  .error-code {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-boundary-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .error-title {
+    font-size: 1.25rem;
+  }
+
+  .error-message {
+    font-size: 0.95rem;
+  }
+
+  .error-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+  }
+
+  .error-icon svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .error-btn {
+    font-size: 0.95rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .error-details-content {
+    padding: 1rem 0.75rem 0.5rem;
+  }
+
+  .error-code {
+    font-size: 0.7rem;
+  }
+}

@@ -1,0 +1,216 @@
+# Netlify Configuration File
+# Documentation: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+# Build Settings
+[build]
+  # Directory to change to before starting a build
+  base = ""
+  
+  # Command to build the site
+  command = "npm run build"
+  
+  # Directory where build output is placed
+  publish = "dist"
+  
+  # Node version to use (optional - Netlify auto-detects)
+  # NODE_VERSION = "20"
+  
+  # Functions directory (for Netlify Functions)
+  # functions = "netlify/functions"
+  
+  # Edge Functions directory
+  # edge_functions = "netlify/edge-functions"
+
+# Build Environment Variables
+[build.environment]
+  # Set Node environment to production
+  NODE_ENV = "production"
+  
+  # NPM/Node settings
+  NPM_FLAGS = "--legacy-peer-deps"
+  NODE_OPTIONS = "--max-old-space-size=4096"
+  
+  # CI environment
+  CI = "true"
+
+# Development Server Settings
+[dev]
+  command = "npm run dev"
+  port = 3000
+  targetPort = 3000
+  publish = "dist"
+  autoLaunch = true
+  framework = "vite"
+
+# SPA Redirect Rules (Alternative to _redirects file)
+# These rules handle client-side routing
+[[redirects]]
+  from = "/api/*"
+  to = "https://your-api.example.com/api/:splat"
+  status = 200
+  # Uncomment force to override existing files
+  # force = true
+  # Uncomment to add custom headers
+  # [redirects.headers]
+  #   X-From = "Netlify"
+
+# Redirect www to non-www (or vice versa)
+# [[redirects]]
+#   from = "https://www.yourdomain.com/*"
+#   to = "https://yourdomain.com/:splat"
+#   status = 301
+#   force = true
+
+# SPA fallback - Must be last redirect rule
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# HTTP Headers Configuration
+# Security headers and caching policies
+[[headers]]
+  # Cache static assets aggressively
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  # Security headers for all pages
+  for = "/*"
+  [headers.values]
+    # Security Headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    
+    # Content Security Policy (CSP)
+    # Adjust this based on your app's needs
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none';"
+    
+    # HSTS - Force HTTPS (uncomment in production)
+    # Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+[[headers]]
+  # Don't cache HTML files
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  # Cache JavaScript files
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  # Cache CSS files
+  for = "/*.css"
+  [headers.values]
+    Content-Type = "text/css; charset=utf-8"
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Plugin Configuration
+# Netlify plugins extend build capabilities
+# [[plugins]]
+#   package = "@netlify/plugin-lighthouse"
+#   
+#   [plugins.inputs]
+#     output_path = "reports/lighthouse.html"
+
+# [[plugins]]
+#   package = "netlify-plugin-cache"
+
+# [[plugins]]
+#   package = "netlify-plugin-checklinks"
+
+# Context-specific configurations
+# Deploy to different environments with different settings
+
+# Production context (main branch)
+[context.production]
+  command = "npm run build"
+  publish = "dist"
+  
+  [context.production.environment]
+    NODE_ENV = "production"
+    VITE_API_URL = "https://api.yourdomain.com"
+
+# Deploy Preview context (Pull Requests)
+[context.deploy-preview]
+  command = "npm run build"
+  publish = "dist"
+  
+  [context.deploy-preview.environment]
+    NODE_ENV = "staging"
+    VITE_API_URL = "https://api-staging.yourdomain.com"
+
+# Branch deploy context (non-production branches)
+[context.branch-deploy]
+  command = "npm run build"
+  publish = "dist"
+  
+  [context.branch-deploy.environment]
+    NODE_ENV = "development"
+
+# Specific branch context example
+# [context.staging]
+#   command = "npm run build"
+#   publish = "dist"
+#   
+#   [context.staging.environment]
+#     NODE_ENV = "staging"
+#     VITE_API_URL = "https://api-staging.yourdomain.com"
+
+# Split Testing (A/B Testing)
+# [[splits]]
+#   id = "feature-test"
+#   [splits.branches]
+#     main = 50
+#     feature-branch = 50
+
+# Custom 404 page
+# [[redirects]]
+#   from = "/*"
+#   to = "/404.html"
+#   status = 404
+
+# Form submissions (if using Netlify Forms)
+# No configuration needed - just add netlify attribute to forms
+
+# Asset Optimization
+# Netlify automatically optimizes images, CSS, and JS
+# You can customize this behavior:
+# [build.processing]
+#   skip_processing = false
+# [build.processing.css]
+#   bundle = true
+#   minify = true
+# [build.processing.js]
+#   bundle = true
+#   minify = true
+# [build.processing.html]
+#   pretty_urls = true
+# [build.processing.images]
+#   compress = true

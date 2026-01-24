@@ -1,0 +1,163 @@
+/* MetricsTable Styles */
+
+.metrics-container {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+/* Table Styles */
+.metrics-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  min-width: 800px; /* Ensure table has minimum width for scrolling */
+}
+
+.metrics-container th {
+  background: #f8fafc;
+  color: #1e293b;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.metrics-container td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+/* Process ID column styling */
+.metrics-container td:first-child {
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+/* Row hover effect */
+.metrics-container tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Last row bottom border removal */
+.metrics-container tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Average Metrics Section */
+.average-metrics {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.average-metrics p {
+  margin: 0.5rem 0;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.average-metrics strong {
+  color: #1e293b;
+  margin-right: 0.5rem;
+}
+
+/* Error/Info Messages */
+.metrics-info {
+  color: #64748b;
+  text-align: center;
+  padding: 1rem;
+  background: #f1f5f9;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+/* Placeholder Message */
+.metrics-container > p {
+  text-align: center;
+  color: #64748b;
+  padding: 2rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 2px dashed #e2e8f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .metrics-container {
+    padding: 1rem;
+  }
+
+  .metrics-container th,
+  .metrics-container td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .average-metrics {
+    padding: 0.75rem;
+  }
+}
+
+/* Add these styles after your existing table styles */
+
+.metrics-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.metric-title {
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.metric-value {
+  color: #1e293b;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.metric-description {
+  color: #64748b;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .metrics-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+  }
+}

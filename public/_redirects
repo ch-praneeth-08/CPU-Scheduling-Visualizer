@@ -1,0 +1,39 @@
+# Netlify/Vercel SPA Redirect Rules
+# This file handles client-side routing for Single Page Applications (SPAs)
+# All requests that don't match a static file are redirected to index.html
+
+# API proxy rules (if you have backend APIs)
+# /api/*  https://your-api.example.com/api/:splat  200
+
+# Redirect all traffic to HTTPS (Netlify)
+# http://* https://:splat 301!
+
+# Custom domain redirects (if needed)
+# https://www.yourdomain.com/* https://yourdomain.com/:splat 301!
+
+# Asset caching - serve static files with long cache headers
+/assets/*  /assets/:splat  200!
+/images/*  /images/:splat  200!
+/fonts/*   /fonts/:splat   200!
+/vite.svg  /vite.svg       200!
+
+# Service Worker and PWA files (if applicable)
+# /sw.js  /sw.js  200
+# /manifest.json  /manifest.json  200
+
+# Special files that should be served as-is
+/robots.txt       /robots.txt       200!
+/manifest.json    /manifest.json    200!
+/sitemap.xml      /sitemap.xml      200
+/favicon.ico      /favicon.ico      200
+/.well-known/*    /.well-known/:splat  200
+
+# Health check endpoint (useful for monitoring)
+/health  /index.html  200
+
+# 404 custom page (optional - uncomment if you create a 404.html)
+# /404  /404.html  404
+
+# SPA Fallback - Redirect all other requests to index.html for client-side routing
+# This MUST be the last rule
+/*  /index.html  200

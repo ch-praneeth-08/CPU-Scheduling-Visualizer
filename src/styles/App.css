@@ -1,0 +1,599 @@
+/* src/styles/App.css */
+
+/* --------------------------------------- */
+/* Global Styles and Body Reset            */
+/* --------------------------------------- */
+
+/* Apply box-sizing border-box to all elements for easier padding/border handling */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /* Basic body styles for overall look and feel */
+  body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Modern, clean font stack */
+    -webkit-font-smoothing: antialiased; /* Improve text rendering on macOS */
+    -moz-osx-font-smoothing: grayscale; /* Improve text rendering on macOS */
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Padding is added to the main container */
+    background-color: #f4f7f6; /* Soft background color */
+    color: #333; /* Default text color */
+    line-height: 1.6; /* Slightly increased line height for better readability */
+    font-size: 16px; /* Base font size */
+  }
+  
+  /* --------------------------------------- */
+  /* Main Layout Container                   */
+  /* --------------------------------------- */
+  
+  /* Style for the main application container div */
+  .container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* --------------------------------------- */
+  /* Section Styling                         */
+  /* --------------------------------------- */
+  
+  /* Styling for the main semantic sections of the app */
+  section {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Add a thin border between sections for visual separation within the container */
+  section:not(:last-child) {
+      border-bottom: 1px solid #eee;
+  }
+  
+  
+  /* Spacing for specific sections if needed */
+  .process-input-section {
+      padding-top: 20px; /* Less padding at the very top */
+  }
+  
+  .simulation-results-section {
+      padding-bottom: 20px; /* Less padding at the very bottom */
+  }
+  
+  
+  /* --------------------------------------- */
+  /* Heading Styles                          */
+  /* --------------------------------------- */
+  
+  /* Styling for main heading */
+  h1 {
+    color: #1e293b;
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-bottom: 0.5rem;
+    position: relative;
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 2px;
+  }
+
+  .container h1 { /* Specificity to ensure h1 inside container gets margin-auto for centering */
+      margin-left: auto;
+      margin-right: auto;
+      display: table; /* Use table display to center with margin auto on inline-block */
+  }
+  
+  
+  /* Styling for section subheadings */
+  h2 {
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 0;
+    /* Removed underline from h2 as sections now have borders */
+  }
+  
+  /* Styling for component subheadings (e.g., "Gantt Chart", "Metrics") */
+  h3 {
+      color: #555;
+      margin-top: 25px; /* Space above h3 when it follows content */
+      margin-bottom: 15px;
+      font-size: 1.5em;
+      font-weight: 600;
+      /* Removed margin-top: 0 as h3 typically follows other elements */
+  }
+  /* Ensure the first h3 within a section has correct top margin */
+  section h3:first-of-type {
+      margin-top: 0;
+  }
+  
+  
+  /* --------------------------------------- */
+  /* Separator Style                         */
+  /* --------------------------------------- */
+  
+  /* Styling for horizontal rule (separator) - used less with section borders */
+  hr {
+    border: none;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 2rem 0;
+  }
+  
+  
+  /* --------------------------------------- */
+  /* Form Element (Input, Select, Label)     */
+  /* --------------------------------------- */
+  
+  /* Container for individual input + label or button groups */
+  /* Used for Process Input, Algorithm Selection controls */
+  .process-input-section > div, /* Directly target input/button divs in input section */
+  .algorithm-select-wrapper,
+  .quantum-input-wrapper,
+  .visualize-button-wrapper {
+      margin-bottom: 15px; /* Consistent vertical space between control groups */
+      display: flex; /* Align label and input/select horizontally */
+      align-items: center; /* Vertically center items in the flex container */
+      flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  }
+  
+  /* Style for input elements and select dropdowns */
+  input[type="number"],
+  select {
+    padding: 10px 12px; /* Padding */
+    margin-right: 15px; /* Space after inputs/select */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #555;
+    background-color: #fff;
+     box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth focus effect */
+     min-width: 100px; /* Prevent collapse for small numbers */
+  }
+  
+  input[type="number"]:focus,
+  select:focus {
+      border-color: #007bff; /* Highlight color on focus */
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.08), 0 0 5px rgba(0,123,255,0.2);
+      outline: none; /* Remove default outline */
+  }
+  
+  /* Style for labels associated with input fields */
+  .process-input-section label, /* May not have explicit labels, relying on placeholders */
+  .algorithm-select-wrapper label,
+  .quantum-input-wrapper label {
+      margin-right: 10px; /* Space between label and input/select */
+      font-weight: 600; /* Slightly bolder */
+      color: #333;
+      min-width: 120px; /* Give labels consistent width if in vertical flex */
+  }
+  
+  /* Adjust label width when inputs wrap */
+  @media (max-width: 600px) {
+       .algorithm-select-wrapper label,
+      .quantum-input-wrapper label {
+           min-width: auto; /* Allow labels to shrink on small screens */
+           margin-right: 0;
+           margin-bottom: 5px; /* Add space below label if it wraps */
+       }
+        .algorithm-select-wrapper,
+      .quantum-input-wrapper {
+           flex-direction: column; /* Stack label and input */
+           align-items: flex-start; /* Align stacked items to the left */
+       }
+       input[type="number"],
+       select {
+           width: 100%; /* Make input/select take full width when stacked */
+           margin-right: 0;
+       }
+  }
+  
+  
+  /* --------------------------------------- */
+  /* Button Styling                          */
+  /* --------------------------------------- */
+  
+  /* General styling for buttons */
+  button {
+    background-color: #007bff; /* Primary brand blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle button shadow */
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+  }
+  
+  button:active {
+      background-color: #004085; /* Even darker on click */
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); /* Inner shadow on active */
+  }
+  
+  /* Specific style for the Clear button */
+  .clear-button {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 1rem;
+  }
+  
+  .clear-button:hover {
+    background: #dc2626;
+  }
+  .clear-button:active {
+      background-color: #a71d2a;
+  }
+  
+  /* Adjust spacing for buttons on small screens */
+  @media (max-width: 600px) {
+      .process-input-section > div button, /* Target buttons within those divs */
+      .visualize-button-wrapper button {
+          margin-right: 10px; /* Add small space if multiple buttons inline */
+          margin-bottom: 10px; /* Add space below if buttons wrap */
+          /* No flexbox/alignment here, let them naturally stack if wrap */
+      }
+      .clear-button {
+           margin-left: 0; /* Remove left margin if stacking */
+           /* margin-top: 10px; */ /* Add top margin if you want clear button on a new line when wrapped */
+      }
+       .process-input-section > div {
+           flex-wrap: wrap; /* Ensure input row wraps */
+           margin-bottom: 0; /* Reduce margin for the flex row itself */
+           /* Add margin to items within the row instead */
+       }
+       .process-input-section > div > * { /* Apply margin to children of flex div */
+            margin-bottom: 10px; /* Add space below each item (input/button) */
+       }
+        .process-input-section > div input[type="number"] {
+           margin-right: 10px; /* Keep space between inputs if they are side by side */
+           /* On smallest screens where they stack: */
+            width: calc(100% - 10px); /* Make input take full width minus some for responsiveness */
+        }
+  
+  
+       /* Quantum input also */
+       .quantum-input-wrapper input {
+           width: calc(100% - 120px - 10px); /* Roughly calc space needed */
+           max-width: 180px; /* Prevent from becoming too wide */
+       }
+  }
+  
+  .visualize-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .visualize-btn:hover:not(:disabled) {
+    background: #2563eb;
+    transform: translateY(-1px);
+  }
+  
+  .visualize-btn:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  
+  /* --------------------------------------- */
+  /* Table Styling (Processes & Metrics)     */
+  /* --------------------------------------- */
+  
+  table {
+    width: 100%; /* Make table take full width */
+    border-collapse: collapse; /* Remove default spacing between cells */
+    margin-top: 20px;
+    margin-bottom: 20px; /* Space below tables */
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow for the table box */
+    border-radius: 8px; /* Match section border radius */
+    overflow: hidden; /* Important for border-radius to clip table children */
+  }
+  
+  th, td {
+    border: 1px solid #e0e0e0; /* Lighter border for cells */
+    padding: 12px 15px; /* Padding inside cells */
+    text-align: left;
+    font-size: 0.95em; /* Slightly smaller text in tables */
+  }
+  
+  th {
+    background-color: #f8f9fa; /* Light background for table headers */
+    font-weight: 600;
+    color: #555;
+  }
+  
+  /* Align Process ID column to center */
+  td:first-child {
+      font-weight: bold;
+      color: #333;
+       /* text-align: center; Center P1, P2 etc. */
+       white-space: nowrap; /* Prevent wrapping of ID */
+  }
+  
+  
+  /* Zebra striping for table rows */
+  tbody tr:nth-child(even) { /* Applied to EVEN rows for better contrast visually after header */
+      background-color: #fefefe; /* Very light background */
+  }
+  
+  /* Hover effect on table rows */
+  tbody tr:hover {
+      background-color: #e9ecef; /* Light background on hover */
+  }
+  
+  
+  /* --------------------------------------- */
+  /* Metrics Specific Table/Averages Styling */
+  /* --------------------------------------- */
+  
+  /* The MetricsTable component's outer container */
+  .metrics-container {
+      /* If MetricsTable has an outer div, styles go here */
+      /* It relies on the general table styles defined above */
+  }
+  
+  .metrics-container table {
+      margin-top: 0; /* Remove the extra top margin if the MetricsTable component already adds it */
+       margin-bottom: 0; /* No space below table if averages follow directly */
+  }
+  
+  .average-metrics {
+      margin-top: 20px; /* Space between the table and the average metrics block */
+      padding-top: 15px;
+      border-top: 1px solid #eee; /* Line above averages */
+      /* Optional background: background-color: #fdfdfd; */
+  }
+  
+  .average-metrics p {
+      margin: 5px 0;
+      font-size: 1.05em; /* Slightly larger font for averages */
+      color: #555;
+  }
+  
+  .average-metrics strong {
+      color: #333;
+      font-weight: 600;
+  }
+  
+  
+  /* --------------------------------------- */
+  /* Algorithm Explanation Styling           */
+  /* --------------------------------------- */
+  
+  /* Section added in App.jsx for explanations */
+  .algorithm-explanation-section {
+      background: #f8fafc;
+  }
+  
+  .algorithm-explanation-section p {
+      margin-bottom: 15px; /* Space between paragraphs */
+      color: #444;
+  }
+  
+  .algorithm-explanation-section strong {
+      color: #222;
+  }
+  
+  /* Optional: Styling for the formula block added in App.jsx */
+  .formula-block {
+       background: #f1f5f9;
+       padding: 1.5rem;
+       border-radius: 8px;
+       margin-top: 1rem;
+  }
+  .formula-block h4 {
+       color: #1e293b;
+       margin-top: 0;
+       margin-bottom: 10px;
+       font-size: 1.2em;
+       font-weight: 600;
+  }
+  .formula-block p {
+      margin: 8px 0; /* More space for formula paragraphs */
+      font-size: 0.95em;
+      color: #555;
+       /* Use a mono-spaced font for formula if preferred: */
+      /* font-family: 'Courier New', Courier, monospace; */
+  }
+  
+  /* Result Explanation Styles */
+  .result-explanation {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  .explanation-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .explanation-card {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .explanation-card h4 {
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .explanation-card.summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .explanation-card.summary li {
+    margin-bottom: 0.5rem;
+    color: #475569;
+  }
+  
+  .explanation-card.analysis p {
+    margin-bottom: 1rem;
+    color: #475569;
+    line-height: 1.5;
+  }
+  
+  .explanation-card.recommendations {
+    background: #f0f9ff;
+    border-color: #bae6fd;
+  }
+  
+  .explanation-card.recommendations p {
+    color: #0369a1;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 768px) {
+    .explanation-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* --------------------------------------- */
+  /* Responsiveness / Mobile Adjustments     */
+  /* --------------------------------------- */
+  
+  /* Adjust padding and margins on smaller screens */
+  @media (max-width: 768px) {
+      body {
+          padding: 10px;
+          font-size: 15px; /* Slightly smaller base font */
+      }
+  
+      .container {
+          padding: 1rem;
+          margin: 15px auto;
+      }
+  
+      section {
+          padding: 1.5rem;
+          /* Section borders will adapt */
+      }
+  
+      h1 {
+          font-size: 2rem;
+          margin-bottom: 20px;
+           padding-bottom: 8px;
+      }
+  
+      h2 {
+          font-size: 1.7em;
+          margin-bottom: 15px;
+      }
+  
+      h3 {
+          font-size: 1.3em;
+          margin-top: 20px;
+          margin-bottom: 10px;
+      }
+  
+       hr {
+          margin: 25px 0;
+       }
+  
+      /* Adjust table padding and font size on smaller screens */
+      th, td {
+          padding: 10px;
+          font-size: 0.9em;
+      }
+  
+      /* Allow tables to scroll horizontally if needed (already on .gantt-container) */
+      /* Apply this to metrics table wrapper if it becomes too wide (e.g. many columns) */
+       .metrics-table-container-wrapper {
+           overflow-x: auto; /* Enable scroll for metrics table if needed */
+           margin-bottom: 15px;
+       }
+        /* Prevent shrinking within the scrolling wrapper */
+        .metrics-table-container-wrapper table {
+           min-width: 500px; /* Ensure table has enough minimum width to justify scrolling */
+           margin-top: 0; /* Remove potential extra margin if inside this wrapper */
+        }
+  
+  
+       /* Flex container adjustments for form elements already added above for < 600px */
+       /* Re-evaluate breakpoint if needed */
+  
+  }
+  
+  /* Even smaller adjustments */
+  @media (max-width: 480px) {
+      h1 { font-size: 1.8em; }
+      h2 { font-size: 1.5em; }
+      h3 { font-size: 1.2em; }
+  
+      button {
+          padding: 8px 12px;
+          font-size: 0.9em;
+      }
+  
+       input[type="number"], select {
+          padding: 8px 10px;
+           font-size: 0.9em;
+       }
+  
+       th, td {
+           padding: 8px;
+           font-size: 0.8em;
+       }
+  
+  }
+  
+  .gantt-chart-container-wrapper,
+  .metrics-table-container-wrapper {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }

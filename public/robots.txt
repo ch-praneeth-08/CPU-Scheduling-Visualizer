@@ -1,0 +1,15 @@
+# robots.txt for CPU Scheduling Visualizer
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Disallow specific paths (uncomment if needed)
+# Disallow: /api/
+# Disallow: /admin/
+
+# Sitemaps
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Crawl-delay (optional, uncomment if needed to prevent server overload)
+# Crawl-delay: 10

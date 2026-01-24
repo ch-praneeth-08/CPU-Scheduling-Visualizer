@@ -1,0 +1,56 @@
+{
+  "name": "CPU Scheduling Visualizer",
+  "short_name": "CPU Scheduler",
+  "description": "Interactive visualization tool for CPU scheduling algorithms including FCFS, SJF, Priority, Round Robin, and more",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#4F46E5",
+  "background_color": "#ffffff",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "education",
+    "productivity",
+    "utilities"
+  ],
+  "shortcuts": [
+    {
+      "name": "FCFS Scheduling",
+      "short_name": "FCFS",
+      "description": "First Come First Serve scheduling",
+      "url": "/?algorithm=fcfs",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Round Robin",
+      "short_name": "RR",
+      "description": "Round Robin scheduling",
+      "url": "/?algorithm=rr",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
+}
