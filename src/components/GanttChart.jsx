@@ -36,7 +36,6 @@ const getProcessColor = (processId, isHovered = false) => {
     const color = processColors[colorIndex];
     return isHovered ? color.replace('0.85', '1') : color;
   } catch (error) {
-    console.warn('Error getting color for process:', processId);
     return 'rgba(148, 163, 184, 0.85)';
   }
 };
