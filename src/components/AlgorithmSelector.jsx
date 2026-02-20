@@ -38,13 +38,6 @@ const AlgorithmSelector = ({ processes, onVisualize, onAlgorithmChange }) => {
       return;
     }
 
-    // Add console.log to debug
-    console.log("Visualizing with:", {
-      processes,
-      selectedAlgorithm,
-      quantum
-    });
-
     try {
       onVisualize(processes, selectedAlgorithm, quantum);
     } catch (error) {
