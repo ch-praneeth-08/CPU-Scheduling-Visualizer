@@ -22,7 +22,6 @@ const calculateMetrics = (originalProcesses, completedProcesses) => {
           if (typeof p.completionTime === 'number' && p.completionTime >= 0) {
                completionTimes[p.id] = p.completionTime;
           } else {
-              // verboseLogs && console.warn(`Metrics calculation: Process ${p.id} has invalid or missing completionTime: ${p.completionTime}`);
                completionTimes[p.id] = undefined;
           }
      });
@@ -62,7 +61,6 @@ const calculateMetrics = (originalProcesses, completedProcesses) => {
                     turnaroundTime: 'N/A',
                     waitingTime: 'N/A',
                 });
-                // verboseLogs && console.warn(`Metrics calculation: Process ${process.id} did not complete successfully (no valid CT found).`);
            }
      });
 
